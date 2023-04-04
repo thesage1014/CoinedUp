@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://t0cux1ieh302"]
+
+[ext_resource type="Script" path="res://scenes/NPCSpawner.gd" id="1_em8do"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ljemn"]
+
+[node name="NPCSpawner" type="Node3D"]
+script = ExtResource("1_em8do")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transparency = 0.82
+mesh = SubResource("SphereMesh_ljemn")

@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://cgdhfi6yngwfg"]
+
+[ext_resource type="Script" path="res://Cabinet.gd" id="1_501rr"]
+[ext_resource type="Material" uid="uid://b123pdw8fohu0" path="res://textures/Cabinet.tres" id="2_nedeh"]
+[ext_resource type="ArrayMesh" uid="uid://bin6dfthenkdp" path="res://models/bloby cab.obj" id="2_q3kpc"]
+[ext_resource type="Material" uid="uid://dfi7hvm02hm2v" path="res://textures/screenbeams.tres" id="4_5cx5i"]
+[ext_resource type="Shader" uid="uid://dqebck1a4s05d" path="res://textures/CabinetScreen.tres" id="5_qp2af"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eht6a"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ftb2e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6xufp"]
+render_priority = 0
+shader = ExtResource("5_qp2af")
+
+[node name="Cabinet" type="Node3D"]
+script = ExtResource("1_501rr")
+
+[node name="Body" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_eht6a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.4, 0, 0, 0, 0.5, 0, 0, 0, 0.4, 0, 0.0478173, 0)
+mesh = ExtResource("2_q3kpc")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_nedeh")
+
+[node name="beams" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.370626, 0, 0, 0, 0.352968, 0.122733, 0, -0.113034, 0.383256, 0, 0.893392, 0.273018)
+material_override = ExtResource("4_5cx5i")
+mesh = SubResource("BoxMesh_ftb2e")
+
+[node name="beams2" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.439513, 0, 0, 0, 0.529262, 0.0237571, 0, -0.0718506, 0.174998, 0, 0.839779, 0.0682646)
+material_override = SubResource("ShaderMaterial_6xufp")
+mesh = SubResource("BoxMesh_ftb2e")
+
+[connection signal="input_event" from="Body" to="." method="_on_rigid_body_3d_input_event"]
+[connection signal="mouse_entered" from="Body" to="." method="_on_rigid_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Body" to="." method="_on_rigid_body_3d_mouse_exited"]

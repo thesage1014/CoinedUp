@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://btlmiggm78mch"]
+
+[ext_resource type="Texture2D" uid="uid://bh2tkqiswh1w1" path="res://textures/35957-1790674126-game texture 512 of wallpaper in an old arcade.png" id="1_g3532"]
+
+[resource]
+albedo_texture = ExtResource("1_g3532")
+uv1_scale = Vector3(6.261, 3.102, 3.102)

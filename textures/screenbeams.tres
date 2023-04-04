@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dfi7hvm02hm2v"]
+
+[sub_resource type="Gradient" id="Gradient_nrajl"]
+colors = PackedColorArray(0, 0, 0, 1, 0.57654, 0.764168, 0.827876, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7v6qo"]
+gradient = SubResource("Gradient_nrajl")
+
+[resource]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0, 0, 0, 0.47451)
+emission_enabled = true
+emission_texture = SubResource("GradientTexture1D_7v6qo")

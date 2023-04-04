@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://etnfxnuxhvpf"]
+
+[ext_resource type="Script" path="res://FloorTile.gd" id="1_qd3eu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k8xrk"]
+size = Vector3(0.9, 0.2, 0.9)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mmxys"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.0941176)
+
+[sub_resource type="BoxMesh" id="BoxMesh_31yj2"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_mmxys")
+size = Vector3(0.9, 0.2, 0.9)
+
+[node name="FloorTile" type="StaticBody3D"]
+script = ExtResource("1_qd3eu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_k8xrk")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_31yj2")
