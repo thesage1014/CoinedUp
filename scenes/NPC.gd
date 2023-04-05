@@ -1,14 +1,22 @@
 class_name NPC extends CharacterBody3D
 @export var walkSpeed = 3.0
 @onready var navAgent : NavigationAgent3D
+var animator : AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	navAgent = get_node("NavigationAgent3D")
+	animator = get_node("Capoeira/AnimationPlayer")
+	if(animator != null):
+		animator.current_animation = "mixamocom"
+		get_node("Capoeira/RootNode/Skeleton3D").motion_scale = .4
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	var pos = global_transform.origin
 	var targetPos = navAgent.get_next_path_position()
+	var targetAngle = pos.angle_to(targetPos)
+	global_rotation = global_rotation.move_toward(Vector3(0,targetAngle,0),.1)
 	var movement = (targetPos - pos).normalized()*walkSpeed
 	velocity = velocity.move_toward(movement,.3)
 	move_and_slide()

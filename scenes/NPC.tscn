@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://8nro1lwjq62r"]
+[gd_scene load_steps=7 format=3 uid="uid://8nro1lwjq62r"]
 
 [ext_resource type="Script" path="res://scenes/NPC.gd" id="1_naym5"]
 [ext_resource type="Texture2D" uid="uid://c861iylctas3c" path="res://textures/35948-896622152-game texture 512 of a low contrast wallpaper in an old arcade.png" id="2_x8rav"]
+[ext_resource type="PackedScene" uid="uid://b2j2rxrteqqfc" path="res://models/Capoeira.fbx" id="3_j3c8f"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_x60gx"]
 height = 1.5
@@ -25,8 +26,11 @@ shape = SubResource("CylinderShape3D_x60gx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_o6bqc")
 mesh = SubResource("CapsuleMesh_n3r8b")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-debug_enabled = true
+
+[node name="Capoeira" parent="." instance=ExtResource("3_j3c8f")]
+transform = Transform3D(0.809, 0, 0, 0, 0.809, 0, 0, 0, 0.809, 0, 0, 0)
