@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://b17k7t0hpjbcc"]
+
+[ext_resource type="Script" path="res://scenes/Player.gd" id="1_1vnsy"]
+[ext_resource type="PackedScene" uid="uid://b2j2rxrteqqfc" path="res://models/Capoeira.fbx" id="2_tmraq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_43byu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v275k"]
+radius = 0.3
+height = 1.25
+
+[node name="Player" type="CharacterBody3D"]
+floor_snap_length = 0.32
+script = ExtResource("1_1vnsy")
+
+[node name="Body" type="Node3D" parent="."]
+
+[node name="EquipmentTrans" type="RemoteTransform3D" parent="Body"]
+
+[node name="Capoeira" parent="Body" instance=ExtResource("2_tmraq")]
+transform = Transform3D(0.69, 0, 0, 0, 0.69, 0, 0, 0, 0.69, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="Body"]
+
+[node name="InteractionCollider" type="CollisionShape3D" parent="Body/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6619, 0.506897)
+shape = SubResource("SphereShape3D_43byu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625, 0)
+shape = SubResource("CapsuleShape3D_v275k")
+
+[connection signal="body_entered" from="Body/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Body/Area3D" to="." method="_on_area_3d_body_exited"]

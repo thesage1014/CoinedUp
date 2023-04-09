@@ -1,6 +1,7 @@
 extends Node
 @export var controlHandler : ControlHandler
 @export var camera : Camera3D
+var player : Player
 var current = self
 
 # Called when the node enters the scene tree for the first time.

@@ -48,26 +48,26 @@ func _on_tile_input_event(camera, event, position, normal, shape_idx, tile:Floor
 	if(event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and !event.pressed):
 		get_tree().call_group("NPCs","set_destination",position)
 		if(placingAngle):
-			selectedCabinet = null
 			placingAngle = false
 		elif(selectedTile.active):
 			selectedTile = tile
-			if(selectedTile.cabinet == null):
+			if(true):
 				if(selectedCabinet != null):
 					remove_child(selectedCabinet)
-					selectedTile.set_contents(selectedCabinet)
+					selectedTile.add_cabinet(selectedCabinet,position)
 					placingTile = false
 					placingAngle = true
 					placingOrigin = event.position
 					nav.bake_navigation_mesh()
-			elif(selectedCabinet == null and !placingAngle):
-				selectedCabinet = selectedTile.take_contents()
-				add_child(selectedCabinet)
-				move_to_brush(selectedCabinet)
-				placingTile = true
+			#elif(selectedCabinet == null and !placingAngle):
+				#selectedCabinet = selectedTile.take_contents()
+				#add_child(selectedCabinet)
+				#move_to_brush(selectedCabinet)
+				#placingTile = true
 	elif(event is InputEventMouseMotion):
 		if(placingAngle):
-			selectedTile.cabinet.preview_rotate((-(event.position - placingOrigin).angle())+PI*.5)
+			selectedCabinet.preview_rotate(PI*.5-placingOrigin.angle_to_point(event.position))
+			print(placingOrigin.angle_to_point(event.position))
 
 func move_to_brush(cabinet : Cabinet):
 	cabinet.global_transform = sg.camera.get_node("./Cabinet").global_transform

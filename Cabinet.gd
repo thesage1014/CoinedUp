@@ -1,15 +1,16 @@
-class_name Cabinet extends Node3D
+class_name Cabinet extends PlayerInteractable
 const CAB_BASIC : int = 0
 const CAB_GREEN : int = 1
 @export var active : bool = false
 @export var cabType : int = 0
 @export var attractDelay : float = 0
-@onready var sg = Singleton.current
-var body : RigidBody3D
+@onready var sg : Singleton = Singleton.current
 var previewAngle = 0.0
 var startTime = 0.0
 var attractOffset = 0.0
 var attractCount = 0
+var targetPosition : Vector3
+var targetRotation : Vector3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,22 +35,44 @@ func _process(delta):
 		attractCount += 1
 		get_tree().call_group("NPCs","attract_available_square",self)
 
+func interact_from(player : Player):
+	if player.handTrucking:
+		pass
+	else:
+		body.rotate_y(PI*.5)
+#func _on_free_cabinet_clicked(cabinet:Cabinet, event):
+#	if(selectedCabinet == null):
+#		selectedCabinet = cabinet
+#		cabinet.active = false
+#		placingTile = true
+#		if(cabinet.get_parent() != null):
+#			cabinet.get_parent().remove_child(cabinet)
+#		add_child(cabinet)
+#		move_to_brush(cabinet)
+
+func _physics_process(delta):
+	if(active):
+		body.global_position = targetPosition
+		body.rotation = targetRotation
+		print(targetRotation)
+
 func activate():
+	targetPosition = position
+	targetRotation = rotation
 	active = true
 
 func preview_rotate(angle : float):
+	targetRotation.y = angle
 	
-	body.rotation = Vector3(body.rotation.x,snapped(angle,PI*.5),body.rotation.z)
-	
-
 func _on_rigid_body_3d_input_event(camera, event, position, normal, shape_idx):
 	if(!active and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and !event.pressed):
 		sg.controlHandler._on_free_cabinet_clicked(self, event)
-
+	
 func _on_rigid_body_3d_mouse_entered():
-	if(!sg.controlHandler.placingTile):
-		get_node("Body/MeshInstance3D").get_active_material(0).emission_energy_multiplier = .2
-
-
+	hovered_over()
+		
 func _on_rigid_body_3d_mouse_exited():
-	get_node("Body/MeshInstance3D").get_active_material(0).emission_energy_multiplier = 0
+	unhovered_over()
+#func _on_body_body_entered(body):
+#	if(body == sg.player):
+#		sg.controlHandler._on_free_cabinet_clicked(self,null)

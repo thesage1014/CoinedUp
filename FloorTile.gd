@@ -1,6 +1,6 @@
 class_name FloorTile extends StaticBody3D
 var sg = Singleton.current
-var cabinet : Cabinet = null
+var cabinets : Array[Cabinet]
 @export var active : bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,21 +8,19 @@ func _ready():
 
 
 func _process(delta):
-	#if(input_ray_pickable != !active) :
-	#	input_ray_pickable = !active
 	get_node("Mesh").visible = sg.controlHandler.placingTile
 
-func set_contents(cabinet : Cabinet):
-	if(self.cabinet == null):
-		self.cabinet = cabinet
+func add_cabinet(cabinet : Cabinet, destinationPos : Vector3):
+		cabinets.append(cabinet)
 		add_child(cabinet)
-		cabinet.transform = transform
-		cabinet.position = Vector3(0,.1,0)
+		cabinet.position = destinationPos
+		cabinet.rotation = Vector3.ZERO
 		cabinet.get_node("Body").input_event.connect(_input_event)
 		cabinet.activate()
 	
 
-func take_contents():
+func take_contents(takingCabinet : Cabinet):
+	var cabinet = cabinets.find(takingCabinet)
 	if(cabinet != null):
 		cabinet.active = false
 		cabinet.get_node("Body").input_event.disconnect(_input_event)
@@ -31,6 +29,7 @@ func take_contents():
 		cabinet = null
 		return returnObj
 	else:
+		printerr("nothing to take")
 		return null
 
 func _input_event(camera, event, position, normal, shape_idx):

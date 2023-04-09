@@ -40,6 +40,7 @@ transform = Transform3D(0.439513, 0, 0, 0, 0.529262, 0.0237571, 0, -0.0718506, 0
 material_override = SubResource("ShaderMaterial_6xufp")
 mesh = SubResource("BoxMesh_ftb2e")
 
+[connection signal="body_entered" from="Body" to="." method="_on_body_body_entered"]
 [connection signal="input_event" from="Body" to="." method="_on_rigid_body_3d_input_event"]
 [connection signal="mouse_entered" from="Body" to="." method="_on_rigid_body_3d_mouse_entered"]
 [connection signal="mouse_exited" from="Body" to="." method="_on_rigid_body_3d_mouse_exited"]

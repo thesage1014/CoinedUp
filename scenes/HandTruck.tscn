@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqxyquujewfvp"]
+
+[ext_resource type="Script" path="res://HandTruck.gd" id="1_1y3jy"]
+[ext_resource type="Material" uid="uid://b123pdw8fohu0" path="res://textures/Cabinet.tres" id="2_14ypj"]
+[ext_resource type="ArrayMesh" uid="uid://bqhfvbh41j2ix" path="res://models/truck.obj" id="2_mlxej"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_parqw"]
+radius = 0.311259
+height = 1.19891
+
+[node name="HandTruck" type="Node3D"]
+script = ExtResource("1_1y3jy")
+
+[node name="Body" type="RigidBody3D" parent="."]
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.596829, 0)
+shape = SubResource("CapsuleShape3D_parqw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.192, 0, 0, 0, -8.39259e-09, -0.192, 0, 0.192, -8.39259e-09, 0, 0.5, 0)
+material_override = ExtResource("2_14ypj")
+mesh = ExtResource("2_mlxej")
+skeleton = NodePath("../..")
