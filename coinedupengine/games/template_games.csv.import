@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c16h3x81m8pwa"
+
+[deps]
+
+files=["res://coinedupengine/games/template_games.type.translation", "res://coinedupengine/games/template_games.subtype.translation", "res://coinedupengine/games/template_games.cost.translation", "res://coinedupengine/games/template_games.game.translation", "res://coinedupengine/games/template_games.skill.translation", "res://coinedupengine/games/template_games.fun.translation", "res://coinedupengine/games/template_games.new.translation", "res://coinedupengine/games/template_games.high.translation", "res://coinedupengine/games/template_games.coop.translation", "res://coinedupengine/games/template_games.crowds.translation", "res://coinedupengine/games/template_games.addiction.translation", "res://coinedupengine/games/template_games.redemption.translation", "res://coinedupengine/games/template_games.procedural.translation"]
+
+source_file="res://coinedupengine/games/template_games.csv"
+dest_files=["res://coinedupengine/games/template_games.type.translation", "res://coinedupengine/games/template_games.subtype.translation", "res://coinedupengine/games/template_games.cost.translation", "res://coinedupengine/games/template_games.game.translation", "res://coinedupengine/games/template_games.skill.translation", "res://coinedupengine/games/template_games.fun.translation", "res://coinedupengine/games/template_games.new.translation", "res://coinedupengine/games/template_games.high.translation", "res://coinedupengine/games/template_games.coop.translation", "res://coinedupengine/games/template_games.crowds.translation", "res://coinedupengine/games/template_games.addiction.translation", "res://coinedupengine/games/template_games.redemption.translation", "res://coinedupengine/games/template_games.procedural.translation"]
+
+[params]
+
+compress=true
+delimiter=0

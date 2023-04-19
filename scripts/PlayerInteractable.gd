@@ -1,5 +1,12 @@
 class_name PlayerInteractable extends Node3D
 @onready var body : RigidBody3D = $Body
+var initialBodyPos : Vector3
+var initialBodyAng : Vector3
+
+
+func _ready():
+	initialBodyPos = body.transform.origin
+	initialBodyAng = body.rotation
 
 func hovered_over():
 	body.get_node("MeshInstance3D").get_active_material(0).emission_energy_multiplier = .1

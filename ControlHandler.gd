@@ -30,15 +30,14 @@ func _input(event):
 #
 
 # TODO: move this into floortile
-func _on_free_cabinet_clicked(cabinet:Cabinet, event):
-	if(selectedCabinet == null):
-		selectedCabinet = cabinet
-		cabinet.active = false
-		placingTile = true
-		if(cabinet.get_parent() != null):
-			cabinet.get_parent().remove_child(cabinet)
-		add_child(cabinet)
-		move_to_brush(cabinet)
+#func _on_free_cabinet_clicked(cabinet:Cabinet, event):
+#	if(selectedCabinet == null):
+#		selectedCabinet = cabinet
+#		cabinet.active = false
+#		placingTile = true
+#		if(cabinet.get_parent() != null):
+#			cabinet.get_parent().remove_child(cabinet)
+#		add_child(cabinet)
 
 func _on_tile_hovered(tile : FloorTile):
 	if(!placingAngle):
@@ -69,5 +68,3 @@ func _on_tile_input_event(camera, event, position, normal, shape_idx, tile:Floor
 			selectedCabinet.preview_rotate(PI*.5-placingOrigin.angle_to_point(event.position))
 			print(placingOrigin.angle_to_point(event.position))
 
-func move_to_brush(cabinet : Cabinet):
-	cabinet.global_transform = sg.camera.get_node("./Cabinet").global_transform

@@ -1,0 +1,16 @@
+name,type,subtype,cost,game_length,skill_factor,fun_value,new_challenger_multiplayer,high_score_multiplayer,coop_multiplayer,crowds_form,addiction_chance,redemption_controlled_payout,procedural_bonuses
+explanation,,,,minutes,(How much or less long a highly skilled player will play; multiply by avg. game length),(These can be randomized in procedural loot),(Plays at same time),(Encourages other players upon playing),,,Chance for a regular to get addicted,,
+Street Figher 2,VIDEO_GAME,Fighting,$0.50,4,4,Random,TRUE,TRUE,,TRUE,15,,
+Gradius,VIDEO_GAME,Shmup,$0.25,10,0.5,Random,,TRUE,TRUE,FALSE,10,,
+Japanese crane game,PRIZE,Crane game,,,,Random,,,,FALSE,10,,Comes with extra plush
+Physical basketball game,PHYSICAL,Baskteball,$1.00,3,0,Random,TRUE,TRUE,,TRUE,10,,Sports team bonus
+Pac-man,VIDEO_GAME,Retro,$0.25,5,10,Random,,TRUE,,FALSE,20,,Increases fun on old people
+Double Dragon,VIDEO_GAME,Retro/fighting,$0.25,4,2,Random,,TRUE,TRUE,FALSE,15,,Occasional long play
+DDR,PHYSICAL,Dance,$1.00,10,10,Random,TRUE,TRUE,TRUE,TRUE,30,,Local DDR club
+Star wars pinball,PINBALL,,$1.00,5,2,Random,,TRUE,,FALSE,10,,
+Racing game,VIDEO_GAME,Racing game,$1.00,4,2,Random,TRUE,TRUE,,FALSE,10,,
+Jet Simulator,SIMULATOR,,$4.00,6,0,Random,,TRUE,,TRUE,10,,
+Gauntlet,VIDEO_GAME,Hack n slash,$0.75,3,0.5,Random,,,TRUE,FALSE,10,,
+Coin Pusher,REDEMPTION,Coin Pusher,$1.00,1,0,Random,,,,FALSE,20,Available,
+Skee-ball,REDEMPTION,Bowler,$1.00,3,0,Random,TRUE,TRUE,,FALSE,15,,
+Hammer Game,REDEMPTION,Boxer,$1.00,1,0,Random,,TRUE,,FALSE,15,Available,

@@ -12,7 +12,6 @@ var attractCount = 0
 var targetPosition : Vector3
 var targetRotation : Vector3
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	startTime = Time.get_ticks_msec()
 	attractOffset = randf_range(0,attractDelay)
@@ -25,8 +24,9 @@ func _ready():
 		1:
 			mat.albedo_color = Color(0,1,0)	
 	body = get_node("Body")
+	targetPosition = position
+	targetRotation = rotation
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(body.freeze != !active) :
 		body.freeze = !active
@@ -37,24 +37,18 @@ func _process(delta):
 
 func interact_from(player : Player):
 	if player.handTrucking:
-		pass
+		#player.gear.transformHelper.transform = transform
+		if player.haulingCabinet:
+			player.haulingCabinet = null
+			player.equippedGear.transformHelper.remote_path = ""
+		else:
+			player.haulingCabinet = self
+			player.equippedGear.transformHelper.remote_path = get_path()
 	else:
 		body.rotate_y(PI*.5)
-#func _on_free_cabinet_clicked(cabinet:Cabinet, event):
-#	if(selectedCabinet == null):
-#		selectedCabinet = cabinet
-#		cabinet.active = false
-#		placingTile = true
-#		if(cabinet.get_parent() != null):
-#			cabinet.get_parent().remove_child(cabinet)
-#		add_child(cabinet)
-#		move_to_brush(cabinet)
 
 func _physics_process(delta):
-	if(active):
-		body.global_position = targetPosition
-		body.rotation = targetRotation
-		print(targetRotation)
+	pass
 
 func activate():
 	targetPosition = position
@@ -73,6 +67,3 @@ func _on_rigid_body_3d_mouse_entered():
 		
 func _on_rigid_body_3d_mouse_exited():
 	unhovered_over()
-#func _on_body_body_entered(body):
-#	if(body == sg.player):
-#		sg.controlHandler._on_free_cabinet_clicked(self,null)

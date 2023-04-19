@@ -7,7 +7,7 @@
 [ext_resource type="Shader" uid="uid://dqebck1a4s05d" path="res://textures/CabinetScreen.tres" id="5_qp2af"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eht6a"]
-size = Vector3(0.5, 1, 0.5)
+size = Vector3(0.66, 1.199, 0.788)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ftb2e"]
 
@@ -19,9 +19,12 @@ shader = ExtResource("5_qp2af")
 script = ExtResource("1_501rr")
 
 [node name="Body" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.056, 0)
+collision_layer = 8
+collision_mask = 11
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.561, 0)
 shape = SubResource("BoxShape3D_eht6a")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]

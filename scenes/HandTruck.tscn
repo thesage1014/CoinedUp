@@ -12,6 +12,9 @@ height = 1.19891
 script = ExtResource("1_1y3jy")
 
 [node name="Body" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.471177)
+collision_layer = 8
+collision_mask = 11
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 
@@ -24,3 +27,6 @@ transform = Transform3D(0.192, 0, 0, 0, -8.39259e-09, -0.192, 0, 0.192, -8.39259
 material_override = ExtResource("2_14ypj")
 mesh = ExtResource("2_mlxej")
 skeleton = NodePath("../..")
+
+[node name="TransformHelper" type="RemoteTransform3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.231932, 0.365454)

@@ -7,4 +7,5 @@ albedo_texture = ExtResource("1_kcxe2")
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
-uv1_scale = Vector3(2, 2, 2)
+uv1_scale = Vector3(0.147, 0.147, 0.147)
+uv1_triplanar = true
