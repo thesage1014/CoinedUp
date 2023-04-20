@@ -9,8 +9,8 @@ var previewAngle = 0.0
 var startTime = 0.0
 var attractOffset = 0.0
 var attractCount = 0
-var targetPosition : Vector3
-var targetRotation : Vector3
+#var targetPosition : Vector3
+#var targetRotation : Vector3
 
 func _ready():
 	startTime = Time.get_ticks_msec()
@@ -24,8 +24,8 @@ func _ready():
 		1:
 			mat.albedo_color = Color(0,1,0)	
 	body = get_node("Body")
-	targetPosition = position
-	targetRotation = rotation
+	#targetPosition = position
+	#targetRotation = rotation
 
 func _process(delta):
 	if(body.freeze != !active) :
@@ -37,30 +37,40 @@ func _process(delta):
 
 func interact_from(player : Player):
 	if player.handTrucking:
-		#player.gear.transformHelper.transform = transform
+		# This cabinet getting placed
 		if player.haulingCabinet:
-			player.haulingCabinet = null
-			player.equippedGear.transformHelper.remote_path = ""
-		else:
-			player.haulingCabinet = self
-			player.equippedGear.transformHelper.remote_path = get_path()
+			on_placed(player)
+		else: # This cabinet getting picked up
+			on_pickup(player)
 	else:
 		body.rotate_y(PI*.5)
 
+func on_placed(player : Player):
+	player.haulingCabinet = null
+	player.equippedGear.transformHelper.remote_path = ""
+	activate()
+
+func on_pickup(player : Player):
+	body.get_node("CollisionShape3D").disabled = true
+	player.haulingCabinet = self
+	player.equippedGear.transformHelper.remote_path = body.get_path()
+	body.transform.origin = Vector3.ZERO			
+	body.rotation = Vector3.ZERO
+	transform.origin = Vector3.ZERO			
+	rotation = Vector3.ZERO
+
 func _physics_process(delta):
-	pass
+	pass#var player = Singleton.player
 
 func activate():
-	targetPosition = position
-	targetRotation = rotation
+	#targetPosition = position
+	#targetRotation = rotation
+	body.get_node("CollisionShape3D").disabled = false
 	active = true
 
 func preview_rotate(angle : float):
-	targetRotation.y = angle
-	
-func _on_rigid_body_3d_input_event(camera, event, position, normal, shape_idx):
-	if(!active and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and !event.pressed):
-		sg.controlHandler._on_free_cabinet_clicked(self, event)
+	pass
+	#targetRotation.y = angle
 	
 func _on_rigid_body_3d_mouse_entered():
 	hovered_over()

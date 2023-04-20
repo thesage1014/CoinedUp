@@ -1,6 +1,6 @@
 class_name Player extends CharacterBody3D
 
-const SPEED = 3
+var moveSpeed = 3
 @onready var animator = $Body/Body/AnimationPlayer
 @onready var animTree = $Body/Body/AnimationTree
 @onready var body = $Body
@@ -21,12 +21,23 @@ func _physics_process(delta):
 	var inputDir = Input.get_vector("left", "right", "up", "down")
 	var targetDir = (transform.basis * Vector3(inputDir.x, 0, inputDir.y)).normalized()
 	var facing_angle = Vector2(targetDir.z,targetDir.x).angle()
-	var newRotation = lerp_angle(body.global_rotation.y,facing_angle,.2)
+	var newRotation = lerp_angle(body.global_rotation.y,facing_angle,moveSpeed*.05)
 	if(inputDir.length() != 0):
 		body.global_rotation = newRotation*Vector3.UP
+	
+	if haulingCabinet:
+		moveSpeed = 2.5
+	else:
+		if Input.is_action_pressed("sprint"):
+			moveSpeed = 6
+			animTree.set("parameters/TimeScale/scale",2.6)
+		else:
+			moveSpeed = 3
+			animTree.set("parameters/TimeScale/scale",1.3)
+		
 	if targetDir:
-		velocity.x = targetDir.x * SPEED
-		velocity.z = targetDir.z * SPEED
+		velocity.x = move_toward(velocity.x, targetDir.x * moveSpeed, .2)
+		velocity.z = move_toward(velocity.z, targetDir.z * moveSpeed, .2)
 	else:
 		velocity.x = move_toward(velocity.x, 0, .15)
 		velocity.z = move_toward(velocity.z, 0, .15)
@@ -34,7 +45,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func equip(gear : Equipment):
-	if(equippedGear == null):
+	if(!equippedGear):
 		equippedGear = gear
 		gear.get_parent().remove_child(gear)
 		body.add_child(gear)
