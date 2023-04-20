@@ -9,10 +9,13 @@ var previewAngle = 0.0
 var startTime = 0.0
 var attractOffset = 0.0
 var attractCount = 0
+var data : CabinetData
 #var targetPosition : Vector3
 #var targetRotation : Vector3
 
 func _ready():
+	data = sg.cabinetDataGenerator.randomVideoGame()
+	
 	startTime = Time.get_ticks_msec()
 	attractOffset = randf_range(0,attractDelay)
 	var mesh = get_node("Body/MeshInstance3D")
@@ -28,6 +31,10 @@ func _ready():
 	#targetRotation = rotation
 
 func _process(delta):
+	$Body/Text/Name.text = data.name
+	$Body/Text/Cost.text = str(data.costToPurchase)
+	$Body/Text/Fun.text = str(data.funValue)
+	
 	if(body.freeze != !active) :
 		body.freeze = !active
 	if(attractDelay > 0 and (Time.get_ticks_msec()-startTime)>attractCount*attractDelay):
@@ -40,7 +47,9 @@ func interact_from(player : Player):
 		# This cabinet getting placed
 		if player.haulingCabinet:
 			on_placed(player)
-		else: # This cabinet getting picked up
+		elif data.purchaseCost < sg.cash: # This cabinet getting picked up
+			sg.cash -= data.purchaseCost
+			data.purchaseCost = 0
 			on_pickup(player)
 	else:
 		body.rotate_y(PI*.5)
