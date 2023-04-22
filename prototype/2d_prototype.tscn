@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://lvwcg3o0aui8"]
+
+[ext_resource type="Script" path="res://engine/EngineSingletonTest.cs" id="1_r5270"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 41.0
+offset_top = 40.0
+offset_right = 173.0
+offset_bottom = 142.0
+color = Color(1, 1, 1, 0.172549)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
+offset_right = 133.0
+offset_bottom = 103.0
+text = "Whats up"
+scroll_active = false
+
+[node name="Button" type="Button" parent="."]
+offset_left = 46.0
+offset_top = 209.0
+offset_right = 132.0
+offset_bottom = 250.0
+text = "BUTTON"
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("1_r5270")
