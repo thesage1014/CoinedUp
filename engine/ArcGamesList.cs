@@ -103,7 +103,7 @@ public partial class ArcGamesList {
         fieldCounter++;
         string proceduralBonuses = fields[fieldCounter];
 
-        if (EngineSingletonTest.DebugPrinting) {
+        if (PrototypeMain.DebugPrinting) {
           GD.Print($"Loading {name}, type {gtype}, subtype {subtype}");
           GD.Print($"cost2play {costToPlay}, cost2buy {costToPurchase} game length (m) {gameLength}, skill factor {skillFactor}");
           GD.Print($"funValue {funValue}");
@@ -132,7 +132,7 @@ public partial class ArcGamesList {
           proceduralBonuses
         );
 
-        if (EngineSingletonTest.DebugPrinting) {
+        if (PrototypeMain.DebugPrinting) {
           GD.Print(newGame.ArcGameSummary());
         }
 
