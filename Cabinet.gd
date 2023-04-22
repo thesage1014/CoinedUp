@@ -31,25 +31,30 @@ func _ready():
 	#targetRotation = rotation
 
 func _process(delta):
-	$Body/Text/Name.text = data.name
-	$Body/Text/Cost.text = str(data.costToPurchase)
-	$Body/Text/Fun.text = str(data.funValue)
+	var infoText = data.name
+	if data.costToPurchase != 0:
+		infoText += "\n$" + str(data.costToPurchase)
+	infoText += "\nFun Value: " + str(data.funValue)
+	$Body/Text/Name.text = infoText
+	#$Body/Text/Cost.text = str(data.costToPurchase)
+	#$Body/Text/Fun.text = str(data.funValue)
 	
 	if(body.freeze != !active) :
 		body.freeze = !active
-	if(attractDelay > 0 and (Time.get_ticks_msec()-startTime)>attractCount*attractDelay):
-		print("beeb boop")
-		attractCount += 1
-		get_tree().call_group("NPCs","attract_available_square",self)
+	if active:
+		if(attractDelay > 0 and (Time.get_ticks_msec()-startTime)>attractCount*attractDelay):
+			#print("attract " + str(self))
+			attractCount += 1
+			get_tree().call_group("NPCs","attract_available_square",self)
 
 func interact_from(player : Player):
 	if player.handTrucking:
 		# This cabinet getting placed
 		if player.haulingCabinet:
 			on_placed(player)
-		elif data.purchaseCost < sg.cash: # This cabinet getting picked up
-			sg.cash -= data.purchaseCost
-			data.purchaseCost = 0
+		elif data.costToPurchase < sg.cash: # This cabinet getting picked up
+			sg.cash -= data.costToPurchase
+			data.costToPurchase = 0
 			on_pickup(player)
 	else:
 		body.rotate_y(PI*.5)
@@ -74,15 +79,15 @@ func _physics_process(delta):
 func activate():
 	#targetPosition = position
 	#targetRotation = rotation
+	attractDelay = 2000
 	body.get_node("CollisionShape3D").disabled = false
+	$Body/beams.visible = true
+	$Body/beams2.visible = true
 	active = true
-
-func preview_rotate(angle : float):
-	pass
-	#targetRotation.y = angle
 	
-func _on_rigid_body_3d_mouse_entered():
-	hovered_over()
-		
-func _on_rigid_body_3d_mouse_exited():
-	unhovered_over()
+func deactivate():
+	attractDelay = 0
+	body.get_node("CollisionShape3D").disabled = true
+	$Body/beams.visible = true
+	$Body/beams2.visible = true
+	active = false

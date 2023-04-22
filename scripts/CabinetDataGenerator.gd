@@ -3,6 +3,10 @@ const names := ["Gradius","Street Figher 2","Gradius","Japanese crane game","Phy
 
 var rng = RandomNumberGenerator.new()
 
+func _init():
+	var test = load("res://scripts/CabinetDataMachine.cs").new() 
+	print(test)
+
 func randomVideoGame() -> CabinetData:
 	var data := CabinetData.new()
 	data.name = names.pick_random()
