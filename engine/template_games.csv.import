@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bc6w1awhgkopa"
+
+[deps]
+
+files=["res://engine/template_games.type.translation", "res://engine/template_games.subtype.translation", "res://engine/template_games.cost to play.translation", "res://engine/template_games.cost to purchase.translation", "res://engine/template_games.game.translation", "res://engine/template_games.skill.translation", "res://engine/template_games.fun.translation", "res://engine/template_games.new.translation", "res://engine/template_games.high.translation", "res://engine/template_games.coop.translation", "res://engine/template_games.crowds.translation", "res://engine/template_games.addiction.translation", "res://engine/template_games.redemption.translation", "res://engine/template_games.procedural.translation"]
+
+source_file="res://engine/template_games.csv"
+dest_files=["res://engine/template_games.type.translation", "res://engine/template_games.subtype.translation", "res://engine/template_games.cost to play.translation", "res://engine/template_games.cost to purchase.translation", "res://engine/template_games.game.translation", "res://engine/template_games.skill.translation", "res://engine/template_games.fun.translation", "res://engine/template_games.new.translation", "res://engine/template_games.high.translation", "res://engine/template_games.coop.translation", "res://engine/template_games.crowds.translation", "res://engine/template_games.addiction.translation", "res://engine/template_games.redemption.translation", "res://engine/template_games.procedural.translation"]
+
+[params]
+
+compress=true
+delimiter=0

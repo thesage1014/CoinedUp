@@ -23,6 +23,10 @@ Singleton="*res://scripts/Singleton.gd"
 
 project/assembly_name="CoinOpOperator"
 
+[dotnet]
+
+project/assembly_name="CoinOpOperator"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
