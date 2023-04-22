@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://cgdhfi6yngwfg"]
+[gd_scene load_steps=18 format=3 uid="uid://bblb3b3i6ntbv"]
 
-[ext_resource type="Script" path="res://Cabinet.gd" id="1_501rr"]
+[ext_resource type="Script" path="res://scripts/Cabinet.gd" id="1_501rr"]
 [ext_resource type="Material" uid="uid://b123pdw8fohu0" path="res://textures/Cabinet.tres" id="2_nedeh"]
 [ext_resource type="ArrayMesh" uid="uid://bin6dfthenkdp" path="res://models/bloby cab.obj" id="2_q3kpc"]
 [ext_resource type="Material" uid="uid://dfi7hvm02hm2v" path="res://textures/screenbeams.tres" id="4_5cx5i"]
@@ -17,12 +17,13 @@ render_priority = 0
 shader = ExtResource("5_qp2af")
 
 [sub_resource type="Gradient" id="Gradient_xrjt2"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.915663, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dyba1"]
 gradient = SubResource("Gradient_xrjt2")
 fill = 1
-fill_from = Vector2(0.517094, 0.495726)
+fill_from = Vector2(0.504274, 0.5)
 fill_to = Vector2(0.538462, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_028vv"]
@@ -42,10 +43,11 @@ colors = PackedColorArray(0, 0, 0, 1, 0.711443, 0.711443, 0.711443, 1, 1, 1, 1, 
 gradient = SubResource("Gradient_on7uj")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xb7bw"]
+lifetime_randomness = 0.47
 direction = Vector3(0, 1, 0)
 spread = 7.03
 initial_velocity_min = 5.0
-initial_velocity_max = 5.0
+initial_velocity_max = 6.0
 color_ramp = SubResource("GradientTexture1D_8wm05")
 color_initial_ramp = SubResource("GradientTexture1D_it0vj")
 attractor_interaction_enabled = false
@@ -110,6 +112,10 @@ text = "Fun"
 [node name="Glitter" type="GPUParticles3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25776, 0)
 material_override = SubResource("StandardMaterial3D_028vv")
+emitting = false
+amount = 15
+one_shot = true
+explosiveness = 0.81
 transform_align = 3
 process_material = SubResource("ParticleProcessMaterial_xb7bw")
 draw_pass_1 = SubResource("QuadMesh_8nigq")

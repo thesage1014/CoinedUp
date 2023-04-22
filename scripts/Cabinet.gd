@@ -46,6 +46,7 @@ func _process(delta):
 			#print("attract " + str(self))
 			attractCount += 1
 			get_tree().call_group("NPCs","attract_available_square",self)
+			$Body/Glitter.emitting = true
 
 func interact_from(player : Player):
 	if player.handTrucking:

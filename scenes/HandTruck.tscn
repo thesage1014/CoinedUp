@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqxyquujewfvp"]
+[gd_scene load_steps=5 format=3 uid="uid://d4gt7o4ywalfg"]
 
-[ext_resource type="Script" path="res://HandTruck.gd" id="1_1y3jy"]
+[ext_resource type="Script" path="res://scripts/HandTruck.gd" id="1_1y3jy"]
 [ext_resource type="Material" uid="uid://b123pdw8fohu0" path="res://textures/Cabinet.tres" id="2_14ypj"]
 [ext_resource type="ArrayMesh" uid="uid://bqhfvbh41j2ix" path="res://models/truck.obj" id="2_mlxej"]
 
