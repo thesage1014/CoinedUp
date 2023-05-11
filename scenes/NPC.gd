@@ -6,6 +6,7 @@ class_name NPC extends CharacterBody3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animator.play("walk and idle/Walking")
+	$Blackboard.set_value("NPC",self)	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

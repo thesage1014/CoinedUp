@@ -351,7 +351,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_tswia")
 
 [node name="AnimationPlayer" parent="Player/Body/Body" index="1"]
 next/Walking = &"Walking"
-blend_times = [&"Walking", &"Idle", 2.0, &"Idle", &"Walking", 0.5]
+blend_times = [&"Idle", &"Walking", 0.5, &"Walking", &"Idle", 2.0]
 
 [node name="AnimationTree" type="AnimationTree" parent="Player/Body/Body"]
 tree_root = SubResource("AnimationNodeBlendTree_b2svf")
